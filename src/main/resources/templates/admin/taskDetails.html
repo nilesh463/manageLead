@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="icon" type="image/png" href="/images/fabicon.png">
+	<title>Trueinsurre</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,200&display=swap" rel="stylesheet">
+
+	<!-- Include jQuery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<!-- Include Select2 CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" rel="stylesheet" />
+
+	<!-- Include Select2 JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
+	<link rel="stylesheet" type="text/css" href="/css/sideAndNavBar.css" />
+	<link rel="stylesheet" type="text/css" href="/css/admin/adminDashboard.css" />
+	<link rel="stylesheet" type="text/css" href="/css/admin/taskDetails.css" />
+
+	<script src="/js/sidebar.js"></script>
+	<script src="/js/admin/adminDashboard.js"></script>
+	<script src="/js/admin/taskDetails.js"></script>
+</head>
+
+<body>
+
+	<div class="sidebar" id="sidebar">
+		<button class="toggle-btn" onclick="toggleSidebar()">&#9776;</button>
+		<ul>
+			<li><a href="/admin-dashboard/" id="link-dashboard">&nbsp;<i class="fa fa-tachometer sideSpace"
+						aria-hidden="true"></i> Dashboard</a></li>
+			<!--<li><a href="#" id="link-tracking">&nbsp;<i class="fa fa-tasks sideSpace" aria-hidden="true"></i>Task</a>
+			</li>-->
+			<li><a href="#" id="link-orders">&nbsp;<i class="fa fa-users sideSpace" aria-hidden="true"></i>Employee</a>
+			</li>
+		</ul>
+	</div>
+
+	<div class="main">
+		<div class="navbar">
+			<div class="logo">
+				<img src="/images/logo.png" alt="invoicemint" title="invoicemint" class="side-logo">
+			</div>
+			<div class="user-dropdown">
+				<span class="username" id="username"><i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp; <span
+						th:text="${user.name}"></span></span>
+				<div class="dropdown-menu" id="dropdown-menu">
+					<a href="#" class="dropdown-item"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp; Settings</a>
+					<a href="/logout" class="dropdown-item"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;
+						Logout</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="content">
+			<div class="card">
+
+				<div class="row">
+					<div class="col-md-12">
+						<h4 class="header"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;
+							<span id="taskTitle">Leads Details</span>
+							<span class="directions">
+								<button type="button" class="btns" onclick="renderTaskHistory();">
+									History
+								</button>
+							</span>
+						</h4>
+
+					</div>
+					
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="">
+							<!--<h4 class="header"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;
+								<span id="taskTitle">Task Details</span>
+							</h4>-->
+							<form id="taskForm" class="formPadding">
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group mb-3">
+														<label class="form-label" for="clientName">Client Name</label>
+														<input class="form-control" id="clientName"
+															name="clientName" type="text"
+															placeholder="Enter Client Name" readonly>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group mb-3">
+														<label class="form-label" for="clientEmail">Client Email</label>
+														<input class="form-control" id="clientEmail"
+															name="clientEmail" type="text"
+															placeholder="Enter Client Email" readonly>
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group mb-3">
+														<label class="form-label" for="clientPhoneNumber">Client Phone Number</label>
+														<input class="form-control" id="clientPhoneNumber" name="clientPhoneNumber"
+															type="text" placeholder="Enter Client Phone Number" readonly>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group mb-3">
+														<label class="form-label" for="clientWebsite">Client Website</label>
+														<input class="form-control" id="clientWebsite" name="clientWebsite"
+															type="text" placeholder="Enter Client Website" readonly>
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group mb-3">
+														<label class="form-label" for="clientCompanyName">Client Company Name</label>
+														<input class="form-control" id="clientCompanyName" name="clientCompanyName" type="text"
+															placeholder="Enter Client Company Name" readonly>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group mb-3">
+														<label class="form-label" for="lastResponseDate">Last Response Date</label>
+														<input class="form-control" id="lastResponseDate"
+															name="lastResponseDate" type="text" readonly>
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group mb-3">
+														<label class="form-label" for="clientCountry">Client Country</label>
+														<input class="form-control" id="clientCountry" name="clientCountry"
+															type="text" placeholder="Enter Client Country" readonly>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group mb-3">
+														<label class="form-label" for="ourContactSource">Our Contact Source</label>
+														<input class="form-control" id="ourContactSource" name="ourContactSource"
+															placeholder="Enter our contact source" readonly></input>
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group mb-3">
+														<label class="form-label" for="leadGenerationDate">Lead Generation Date</label>
+														<input class="form-control" id="leadGenerationDate"
+															name="leadGenerationDate" type="text" readonly> <!--policyIssuedDate-->
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group mb-3">
+														<label class="form-label" for="requirementType">requirementType</label>
+														<input class="form-control" id="requirementType"
+															name="requirementType" readonly>
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group mb-3">
+														<label class="form-label" for="source">Source</label>
+
+														<input class="form-control" id="source"
+															name="source" readonly>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group mb-3">
+														<label class="form-label" for="nextFollowUpDate">Next Follow-Up
+															Date</label>
+														<input class="form-control" id="nextFollowUpDate"
+															name="nextFollowUpDate" type="text" readonly>
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group mb-3">
+														<label class="form-label" for="status">Status</label>
+
+														<input class="form-control" id="status" name="status" readonly>
+														</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group mb-3">
+														<label class="form-label" for="comments">Comments</label>
+														<textarea class="form-control" id="comments" name="comments"
+															placeholder="Enter Comments" rows="3" readonly></textarea>
+														<input type="hidden" id="id" name="id" th:value="${id}">
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-md-12">
+													<div class="directions">
+														<button class="btn btn-outline-danger"
+															onclick="closeEmployeePopup()">Cancel</button>
+														&nbsp;
+														<button type="button" class="btn btn-outline-success"
+															onclick="submitForm()">Save</button>
+													</div>
+												</div>
+											</div>
+										</form>
+
+						</div>
+					</div>
+				</div>
+
+				<!--Task History Start-->
+
+				<div class="row">
+					<div class="col-md-12">
+						<div id="taskModal" class="modal" style="display: none;">
+							<div class="modal-content cardBackground">
+								<div class="card">
+
+									<form id="" class="formPadding">
+
+										<div class="row">
+											<div class="col-md-12">
+												<div id="history-container"></div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-12">
+												<div class="directions">
+													<button class="btn btn-outline-danger"
+														onclick="closeHistory()"><i class="fa fa-window-close"
+															aria-hidden="true"></i></button>
+
+												</div>
+											</div>
+										</div>
+									</form>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--Task History End-->
+
+				<!--Alert Popup Start-->
+				<div class="row">
+					<div class="col-md-12">
+						<div id="alertPopup" class="alert-popup hidden">
+							<div class="alert-content">
+								<div id="cardId">
+									<div class="">
+										<span id="alertMessage" class="alert-message"></span>
+									</div>
+									<!--<button id="alertClose" class="alert-close" onclick="hideAlert();">OK</button>-->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Alert Popup end-->
+
+				<!-- Task Update Message Popup Start-->
+				<div class="row">
+					<div class="col-md-12">
+						<div id="commentPopup" class="empDelOverlay" style="display: none;">
+							<div class="card">
+								<div class="messageCommentPopupContent">
+									<!--<p id="messageErrorText"></p>-->
+									<div class="form-group mb-3">
+										<label class="form-label" for="taskFile" style="float: left;"><b
+												id="confrmLable"></b></label>
+										<textarea class="form-control textAreaHeight" id="userComment"
+											name="userComment" placeholder="Enter..." rows="3"></textarea>
+									</div>
+									<div class="messageDelPopupButtons">
+										<button id="commentDelYes" class="uploadBtn">Save</button>
+										<button id="commentDelNo" class="empDelBtn">Cancel</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Task Update Message End-->
+
+			</div>
+		</div>
+
+		<script>
+			// Call the function on page load
+			window.onload = function () {
+				debugger;
+				const taskId = document.getElementById('id').value;
+				fetchTaskDetails(taskId);
+			};
+		</script>
+</body>
+
+</html>

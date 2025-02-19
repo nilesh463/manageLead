@@ -1,0 +1,344 @@
+@charset "ISO-8859-1";
+
+body {
+	font-family: Arial, sans-serif;
+	display: flex;
+	height: 100vh;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+	background-image: url("/images/loginBackground.png");
+	background-size: 100% 100%;
+	/* Set width and height */
+	background-repeat: no-repeat;
+	/* Prevent the image from repeating */
+}
+
+body {
+	user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+.sidebar {
+	width: 60px;
+	background-color: rgb(0, 64, 128);
+	color: white;
+	transition: width 0.3s;
+	display: flex;
+	flex-direction: column;
+}
+
+.sidebar:hover,
+.sidebar.open {
+	width: 200px;
+}
+
+.sidebar .toggle-btn {
+	border-radius: 5px;
+	background-color: rgb(0, 64, 128);
+	border: none;
+	color: white;
+	padding: 19px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.sidebar ul {
+	list-style-type: none;
+	padding: 0px 10px;
+}
+
+.sidebar ul li {
+	margin: 15px 0;
+	text-align: left;
+	white-space: nowrap;
+}
+
+.sidebar ul li a {
+	text-decoration: none;
+	color: white;
+	padding: 10px;
+	display: block;
+	transition: background-color 0.3s;
+}
+
+.sidebar ul li a:hover {
+	border-radius: 5px;
+	color: rgb(0, 64, 128);
+	background-color: white;
+}
+
+.main {
+	flex: 1;
+	/* Ensures the main area takes up all remaining width */
+	display: grid;
+	flex-direction: column;
+	background-color: #f4f4f4;
+}
+
+/* Navbar styles */
+
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 12px 20px;
+	background-color: #f8f9fa;
+	border-bottom: 1px solid #ddd;
+	height: fit-content;
+}
+
+/*.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	background-color: #f8f9fa;
+	border-bottom: 1px solid #ddd;
+}*/
+
+.logo img {
+	height: 37px;
+	width: 94px;
+}
+
+/* User Dropdown styles */
+/*.user-dropdown {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+}*/
+
+.user-dropdown {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	border: 1px solid rgb(0, 64, 128);
+	padding: 6px;
+	border-radius: 4px;
+	background-color: white;
+	color: rgb(0, 64, 128);
+}
+
+.user-dropdown:hover {
+	background-color: rgb(0, 64, 128);
+	color: white;
+
+	.username {
+		background-color: rgb(0, 64, 128);
+		color: white;
+	}
+}
+
+.username {
+	font-size: 16px;
+	font-weight: bold;
+	color: rgb(0, 64, 128);
+	background-color: white;
+	margin-right: 10px;
+}
+
+.username:hover {
+	background-color: rgb(0, 64, 128);
+	color: white;
+}
+
+
+.dropdown-menu {
+	position: absolute;
+	top: 30px;
+	right: 0;
+	display: none;
+	/* Hidden by default */
+	background-color: white;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	border-radius: 4px;
+	z-index: 1000;
+	overflow: hidden;
+	min-width: 150px;
+}
+
+.dropdown-item {
+	display: block;
+	padding: 10px 15px;
+	text-decoration: none;
+	color: rgb(0, 64, 128);
+	font-size: 14px;
+	border-bottom: 1px solid #eee;
+}
+
+.dropdown-item:last-child {
+	border-bottom: none;
+}
+
+.dropdown-item:hover {
+	background-color: #f0f0f0;
+	color: rgb(0, 64, 128);
+}
+
+/* Show dropdown menu when open */
+.user-dropdown.open .dropdown-menu {
+	display: block;
+}
+
+
+
+.content {
+	flex: 1;
+	background-color: #f4f4f4;
+	padding: 20px;
+	overflow: auto;
+	/* Adds scrolling for the content if it overflows */
+}
+
+.side-logo {
+	width: 15%;
+	margin-top: 0px;
+}
+
+.sideSpace {
+	margin-right: 21px;
+}
+
+/* Base styles for the popup */
+.alert-popup {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+	transition: opacity 0.3s ease;
+}
+
+/* Hidden state */
+.hidden {
+	visibility: hidden;
+	opacity: 0;
+}
+
+/* Shown state */
+.alert-popup.active {
+	visibility: visible;
+	opacity: 1;
+}
+
+/* Popup content */
+/*.alert-content {
+	background: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	text-align: center;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}*/
+
+.alert-content {
+	background: #fff;
+	padding: 39px;
+	border-radius: 8px;
+	text-align: center;
+	box-shadow: 0 4px 10px rgb(239 246 238 / 30%);
+	background-color: rgb(0, 64, 128);
+	border: 2px solid black;
+}
+
+.alert-message {
+	font-size: 23px;
+	margin-bottom: 20px;
+	color: #f5f4f4;
+	margin-bottom: 0px;
+}
+
+.alert-close {
+	margin-top: 36px;
+	background-color: rgb(0, 64, 128);
+	color: #fff;
+	border: 1px solid rgb(0, 64, 128);
+	padding: 10px 20px;
+	font-size: 14px;
+	border-radius: 5px;
+	cursor: pointer;
+	text-align: center;
+}
+
+.alert-close:hover {
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 64, 128);
+}
+
+.loader-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-color: #f4f4f4;
+}
+
+/* Loader ring */
+.loader {
+	width: 50px;
+	height: 50px;
+	border: 5px solid rgba(52, 152, 219, 0.3);
+	border-top-color: #3498db;
+	border-radius: 50%;
+	animation: spin 1s linear infinite, blink 1.5s infinite;
+}
+
+/* Spinning animation */
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+/* Blinking effect */
+@keyframes blink {
+
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.5;
+	}
+}
+
+.active-status {
+    color: green !important;
+}
+
+.inactive-status {
+    color: blue !important;
+}
+
+.hold-status {
+    color: yellow !important;
+}
+
+.closed-status {
+    color: coral !important;
+}
+
+.default-status {
+    background-color: white !important;
+}
+
+.copyClientUrl{
+	width: 600px;
+}
+.copyClientUrl:hover{
+	border-radius: 4px;
+	background-color: rgb(11, 11, 151) !important;
+}
