@@ -181,7 +181,7 @@ async function fetchTasks(page = currentPage, size = currentSize) {
              <span ><a href="/task/${task.id}" title="History" style="color: green"><i class="fa fa-info-circle" aria-hidden="true"></i></a></span>
         </td>
         <td data-column="employeeAssinedName" >${task.employeeAssinedName || "Admin"}</td>
-        <td data-column="employeeAssinedEmail">${task.employeeAssinedEmail || "admin@gmail.com"}</td>
+        <td data-column="employeeAssinedEmail">${task.employeeAssinedEmail || "mukul@interestbudsolutions.com"}</td>
         
         <td data-column="clientName" onclick="confirmation('${task.clientName}','${task.id}','Client Name')">${task.clientName}</td>
         <td data-column="clientEmail" onclick="confirmation('${task.clientEmail}','${task.id}','Client Email')">${task.clientEmail}</td>
