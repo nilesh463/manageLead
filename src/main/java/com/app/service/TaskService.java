@@ -21,7 +21,7 @@ public interface TaskService {
 	public CsvValidateResponce saveCsvData(MultipartFile file, Long userId)throws ParseException;
 	public Page<TaskDto> getAllTaskByIsAssignANdByIsDeleted(boolean isAssign, boolean isDeleted, int page, int size);
 	public Page<TaskDto> getAllTaskByIsAssignAndBySourceANdByIsDeleted(String source, boolean isDeleted, int page, int size);
-	public Page<TaskDto> getAllTaskByIsAssignAndByIsCompletedANdByIsDeleted(boolean isAssign, boolean isCompleted, boolean isDeleted, int page, int size);
+	public Page<TaskDto> getAllTaskByIsCompletedANdByIsDeleted(boolean isCompleted, boolean isDeleted, int page, int size);
 	public Page<TaskDto> getAllTaskByUserAndByIsAssignANdByIsDeleted(Long userId, boolean isAssign, boolean isDeleted, int page, int size);
 	public Page<TaskDto> getAllTaskByUserAndByIsAssignAndByIsCompletedANdByIsDeleted(Long userId, boolean isAssign, boolean isCompleted, boolean isDeleted, int page, int size);
 	public void taskAssign(List<Long> taskList, List<Long> userList);
@@ -67,6 +67,8 @@ public interface TaskService {
 	Page<TaskDto> getAllBySourceAndIsDeleted(String source, boolean isDeleted, int page, int size);
 	Page<TaskDto> getAllByStatusAndIsDeleted(String status, boolean isDeleted, int page, int size);
 	Page<TaskDto> getAllByIsDeleted(int page, int size);
+	Page<TaskDto> getAdminAllTaskByIsCompletedANdByIsDeleted(boolean isAssign, boolean isCompleted, boolean isDeleted,
+			int page, int size);
 
 
 }

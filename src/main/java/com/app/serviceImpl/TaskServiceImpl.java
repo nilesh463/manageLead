@@ -387,7 +387,17 @@ public class TaskServiceImpl implements TaskService {
 	}
 	
 	@Override
-	public Page<TaskDto> getAllTaskByIsAssignAndByIsCompletedANdByIsDeleted(boolean isAssign, boolean isCompleted, boolean isDeleted, int page, int size) {
+	public Page<TaskDto> getAllTaskByIsCompletedANdByIsDeleted(boolean isCompleted, boolean isDeleted, int page, int size) {
+
+		Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
+		Page<Task> taskPage = taskRepository.findByIsCompletedAndIsDeleted(isCompleted, isDeleted,
+				pageable);
+
+		return taskPage.map(this::convertToDto);
+	}
+	
+	@Override
+	public Page<TaskDto> getAdminAllTaskByIsCompletedANdByIsDeleted(boolean isAssign, boolean isCompleted, boolean isDeleted, int page, int size) {
 
 		Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
 		Page<Task> taskPage = taskRepository.findByIsAssignAndIsCompletedAndIsDeleted(isAssign, isCompleted, isDeleted,

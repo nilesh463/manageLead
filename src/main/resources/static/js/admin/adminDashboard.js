@@ -60,14 +60,14 @@ async function fetchTasks(page = currentPage, size = currentSize) {
 		var selectStatus = document.getElementById('selectStatus').value;
 
 		var userId = document.getElementById('userList').value;
-		var url = `/task/all`;
+		var url = `/task/admin-all`;
 		const baseUrl = `?page=${page}&size=${size}`
 
 
 		if (userId != '') {
 			//url = `/task/emp-all/${userId}`;
 			if (userId == 'all') {
-				//url = `all-leads`;
+				url = `/task/all`;
 				if (requirementTyple != '' && selectStatus != '' && sourceType != '') {
 					url = `/task/all-by-source-requirement-status/` + sourceType + `/` + requirementTyple + `/` + selectStatus;
 				} else if (requirementTyple != '' && selectStatus != '') {
@@ -582,8 +582,8 @@ async function populateEmployeeDropdown() {
 		const employees = await response.json();
 
 		const userList = document.getElementById('userList');
-		userList.innerHTML = `<option class="dropdown-item form-control" value="all">All</option>,
-		<option class="dropdown-item form-control" value="">Admin</option>`;
+		userList.innerHTML = `<option class="dropdown-item form-control" value="" selected>Admin</option>,
+		<option class="dropdown-item form-control" value="all">All</option>`;
 
 		employees.forEach(employee => {
 			const option = document.createElement('option');

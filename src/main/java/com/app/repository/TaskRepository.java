@@ -13,7 +13,7 @@ import com.app.modal.Task;
 public interface TaskRepository extends JpaRepository<Task, Long> {
 	
 	Page<Task> findByIsAssignAndIsDeleted(boolean isAssign, boolean isDeleted, Pageable pageable);
-    Page<Task> findByIsAssignAndIsCompletedAndIsDeleted(boolean isAssign, boolean isCompleted, boolean isDeleted, Pageable pageable);
+    Page<Task> findByIsCompletedAndIsDeleted(boolean isCompleted, boolean isDeleted, Pageable pageable);
     Page<Task> findByUsers_IdAndIsAssignAndIsDeleted(Long userId, boolean isAssign, boolean isDeleted, Pageable pageable);
     Page<Task> findByUsers_IdAndIsAssignAndIsCompletedAndIsDeleted(Long userId, boolean isAssign, boolean isCompleted, boolean isDeleted, Pageable pageable);
 	Page<Task> findByIsAssignAndIsCompletedAndIsDeletedAndStatus(boolean isAssign, boolean isCompleted,
@@ -54,4 +54,6 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 	Page<Task> findByStatusAndIsDeleted(String status, boolean isDeleted, Pageable pageable);
 	Page<Task> findByIsDeletedFalse(Pageable pageable);
 	List<Task> findByNextFollowUpDate(String nextFollowUpDate);
+	Page<Task> findByIsAssignAndIsCompletedAndIsDeleted(boolean isAssign, boolean isCompleted, boolean isDeleted,
+			Pageable pageable);
 }

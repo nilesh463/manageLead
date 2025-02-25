@@ -60,11 +60,27 @@ public class TaskController {
 	
 	
 	
+	@GetMapping("/admin-all")
+	public ResponseEntity<Map<String, Object>> getAdminAllTaskByIsCompletedANdByIsDeleted(@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size) {
+
+		Page<TaskDto> taskPage = taskService.getAdminAllTaskByIsCompletedANdByIsDeleted(false, false, false,
+				page, size);
+
+		Map<String, Object> response = new HashMap<>();
+		response.put("tasks", taskPage.getContent());
+		response.put("currentPage", taskPage.getNumber());
+		response.put("totalPages", taskPage.getTotalPages());
+		response.put("totalElements", taskPage.getTotalElements());
+
+		return ResponseEntity.ok(response);
+	}
+	
 	@GetMapping("/all")
 	public ResponseEntity<Map<String, Object>> getAllTasks(@RequestParam(defaultValue = "0") int page,
 			@RequestParam(defaultValue = "10") int size) {
 
-		Page<TaskDto> taskPage = taskService.getAllTaskByIsAssignAndByIsCompletedANdByIsDeleted(false, false, false,
+		Page<TaskDto> taskPage = taskService.getAllTaskByIsCompletedANdByIsDeleted(false, false,
 				page, size);
 
 		Map<String, Object> response = new HashMap<>();
