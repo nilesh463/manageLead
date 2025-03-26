@@ -509,6 +509,8 @@ public class TaskServiceImpl implements TaskService {
 		taskObj.setSource(taskDto.getSource());
 		taskObj.setClientCountry(taskDto.getClientCountry());
 		taskObj.setOurContactSource(taskDto.getOurContactSource());
+		System.out.println(taskDto.getLeadGenerationDate());
+		System.out.println("Lead Generationn date: "+DateUtility.convertToMMDDYYYY(taskDto.getLeadGenerationDate()));
 		taskObj.setLeadGenerationDate(DateUtility.convertToMMDDYYYY(taskDto.getLeadGenerationDate()));
 		taskObj.setLastResponseDate(DateUtility.convertToMMDDYYYY(taskDto.getLastResponseDate()));
 		taskObj.setNextFollowUpDate(DateUtility.convertToMMDDYYYY(taskDto.getNextFollowUpDate()));

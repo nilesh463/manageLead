@@ -511,8 +511,8 @@ public class TaskController {
 	@PostMapping("/add")
 	public ResponseEntity<Responce> addNewTask(@RequestBody TaskDto taskDto) throws ParseException{
 		Responce response = new Responce();
-		//taskService.addTask(taskDto);
-		System.out.println(taskService.addTask(taskDto));
+		taskService.addTask(taskDto);
+		//System.out.println(taskService.addTask(taskDto));
 		response.setStatus(200L);
 		response.setMessage("New added.");
 		return ResponseEntity.ok(response);

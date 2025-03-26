@@ -11,13 +11,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class DateUtility {
 
-	// Convert dd-MM-yyyy to MM/dd/yyyy
-	public static String convertToMMDDYYYY(String date) throws ParseException {
-		if (date != null && date != "") {
-			SimpleDateFormat inputFormat = new SimpleDateFormat("dd-MM-yyyy");
-			SimpleDateFormat outputFormat = new SimpleDateFormat("MM/dd/yyyy");
-			Date parsedDate = inputFormat.parse(date);
-			return outputFormat.format(parsedDate);
+	// Convert yyyy-mm-dd to MM/dd/yyyy
+	public static String convertToMMDDYYYY(String inputDate) throws ParseException {
+		if (inputDate != null && inputDate != "") {
+			DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+
+	        // Parse the input date string to LocalDate
+	        LocalDate date = LocalDate.parse(inputDate, inputFormatter);
+
+	        // Format the date into the desired format
+	        return date.format(outputFormatter);
 		} else {
 			return "";
 		}
