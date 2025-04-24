@@ -33,9 +33,14 @@
 
 	<script src="/js/sidebar.js"></script>
 	<script src="/js/admin/adminDashboard.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
-
+<style>
+	i.fa-solid {
+	    color: #fff;
+	}
+</style>
 <body>
 
 	<div class="sidebar" id="sidebar">
@@ -446,6 +451,22 @@
 								</div>
 							</div>
 						</div>
+						<!-- Table Scroll Arrows -->
+						<div style="display: flex;
+						    justify-content: end;
+						    margin-bottom: 17px;
+						    gap: 10px;
+						    margin-top: 8px;
+						    margin-right: 9px;">
+						    <button onclick="scrollTable('left')" style="padding: 5px 10px;
+							    border: none;
+							    border-radius: 6px;
+							    background: #004080;"><i class="fa-solid fa-arrow-left"></i></button>
+						    <button onclick="scrollTable('right')" style="padding: 5px 10px;
+							border: none;
+						    border-radius: 6px;
+						    background: #004080;"><i class="fa-solid fa-arrow-right"></i></button>
+						</div>
 
 						<div class="table-container" style="border: 1px solid #ddd;padding: 5px;width: 1405px;">
 							<div>
@@ -770,6 +791,26 @@
 			});
 
 		</script>
+		<script>
+		    function scrollTable(direction) {
+		        const container = document.querySelector('.table-container');
+		        const scrollAmount = 200;
+		        if (direction === 'left') {
+		            container.scrollLeft -= scrollAmount;
+		        } else if (direction === 'right') {
+		            container.scrollLeft += scrollAmount;
+		        }
+		    }
+			
+			document.addEventListener('keydown', function (event) {
+			       if (event.key === 'ArrowLeft') {
+			           scrollTable('left');
+			       } else if (event.key === 'ArrowRight') {
+			           scrollTable('right');
+			       }
+			   });
+		</script>
+
 </body>
 
 </html>
